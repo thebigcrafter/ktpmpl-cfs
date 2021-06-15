@@ -1,6 +1,6 @@
 # ktpmpl-cfs
 
-Virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check). This virion alleviates the need to readd and reuse the same codes over and over across KygekTeam plugins.
+A PocketMine-MP virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check). This virion alleviates the need to readd and reuse the same codes over and over across KygekTeam plugins.
 
 ## Features
 
