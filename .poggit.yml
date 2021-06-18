@@ -7,4 +7,7 @@ projects:
     path: ""
     model: virion
     type: library
+    libs:
+    - src: JackMD/UpdateNotifier/UpdateNotifier
+      version: ^2.1
 ...
