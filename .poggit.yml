@@ -2,12 +2,10 @@
 build-by-default: true
 branches:
 - main
+- pm4
 projects:
   ktpmpl-cfs:
     path: ""
     model: virion
     type: library
-    libs:
-    - src: JackMD/UpdateNotifier/UpdateNotifier
-      version: ^2.1
 ...
