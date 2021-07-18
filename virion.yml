@@ -8,8 +8,8 @@
 # (at your option) any later version.
 
 name: ktpmpl-cfs
-version: 1.0.0
+version: 2.0.0
 author: KygekTeam
-api: 3.0.0
+api: 4.0.0
 antigen: KygekTeam\KtpmplCfs
 ...
