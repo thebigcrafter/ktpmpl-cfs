@@ -14,8 +14,9 @@ declare(strict_types=1);
 
 namespace KygekTeam\KtpmplCfs;
 
-use JackMD\UpdateNotifier\UpdateNotifier;
+use KygekTeam\KtpmplCfs\task\UpdateNotifyTask;
 use pocketmine\plugin\Plugin;
+use pocketmine\Server;
 
 class KtpmplCfs {
 
@@ -44,7 +45,10 @@ class KtpmplCfs {
      */
     public static function checkUpdates(Plugin $plugin) {
         if ($plugin->getConfig()->get("check-updates", true)) {
-            UpdateNotifier::checkUpdate($plugin->getDescription()->getName(), $plugin->getDescription()->getVersion());
+            Server::getInstance()->getAsyncPool()->submitTask(new UpdateNotifyTask(
+                $plugin->getDescription()->getName(),
+                $plugin->getDescription()->getVersion()
+            ));
         }
     }
 
