@@ -8,6 +8,6 @@ projects:
     model: virion
     type: library
     libs:
-    - src: JackMD/UpdateNotifier/UpdateNotifier
-      version: ^2.1
+    - src: ifera-mc/UpdateNotifier/UpdateNotifier
+      version: ^2.1.0
 ...
