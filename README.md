@@ -2,7 +2,7 @@
 
 [![Discord](https://img.shields.io/discord/735439472992321587.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CXtqUZv)
 
-A PocketMine-MP virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check). This virion alleviates the need to readd and reuse the same codes over and over across KygekTeam plugins.
+A PocketMine-MP virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check). This virion alleviates the need to reuse the same codes over and over across KygekTeam plugins.
 
 ## Features
 
