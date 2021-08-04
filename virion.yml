@@ -11,7 +11,6 @@ name: ktpmpl-cfs
 version: 2.0.0
 author: KygekTeam
 api: 4.0.0
-extensions:
-  Core: ">=7.4"
+php: [8.0]
 antigen: KygekTeam\KtpmplCfs
 ...
