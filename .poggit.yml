@@ -3,9 +3,13 @@ build-by-default: true
 branches:
 - main
 - pm4
+- pm4-updatenotifier
 projects:
   ktpmpl-cfs:
     path: ""
     model: virion
     type: library
+    libs:
+    - src: ifera-mc/UpdateNotifier/UpdateNotifier
+      version: ^2.2.0
 ...
