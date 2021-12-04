@@ -4,6 +4,7 @@ branches:
 - main
 - pm4
 - pm4-updatenotifier
+- 4.0.0-dev
 projects:
   ktpmpl-cfs:
     path: ""
