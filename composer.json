@@ -1,0 +1,27 @@
+{
+    "name": "kygekteam/ktpmpl-cfs",
+    "description": "A PocketMine-MP virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins",
+    "type": "library",
+    "version": "4.0.0-BETA",
+    "require": {
+        "php": "^8.0",
+        "php-64bit": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.4",
+        "pocketmine/pocketmine-mp": "^4.0.0"
+    },
+    "license": "GPL-3.0",
+    "autoload": {
+        "psr-4": {
+            "Kygekteam\\KtpmplCfs\\": "src/KygekTeam/KtpmplCfs"
+        }
+    },
+    "authors": [
+        {
+            "name": "KygekDev",
+            "email": "68368066+KygekDev@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
