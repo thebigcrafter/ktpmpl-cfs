@@ -15,17 +15,17 @@ declare(strict_types=1);
 namespace KygekTeam\KtpmplCfs;
 
 use JackMD\UpdateNotifier\UpdateNotifier;
-use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginBase;
 
 class KtpmplCfs {
 
     /**
      * KtpmplCfs constructor.
      * 
-     * @param Plugin $plugin
+     * @param PluginBase $plugin
      */
     public function __construct(
-        private Plugin $plugin
+        private PluginBase $plugin
     ) {}
 
     /**
@@ -52,8 +52,7 @@ class KtpmplCfs {
     }
 
     /**
-     * Checks for plugin updates in Poggit.
-     * Plugin must include the UpdateNotifier virion.
+     * Checks for plugin updates in Poggit using the UpdateNotifier virion.
      *
      * Returns true if update check is enabled in config.yml, otherwise false.
      *
@@ -63,6 +62,23 @@ class KtpmplCfs {
         $plugin = $this->plugin;
         if ($plugin->getConfig()->get("check-updates", true)) {
             UpdateNotifier::checkUpdate($plugin->getDescription()->getName(), $plugin->getDescription()->getVersion());
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Send a warning to the console that the plugin is running on a development version.
+     *
+     * Returns true if warn development version is enabled in config.yml, otherwise false.
+     *
+     * @return bool
+     */
+    public function warnDevelopmentVersion() : bool {
+        $plugin = $this->plugin;
+        if ($plugin->getConfig()->get("warn-development", true)) {
+            $name = $plugin->getName();
+            $plugin->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/KygekTeam/$name/issues.");
             return true;
         }
         return false;
