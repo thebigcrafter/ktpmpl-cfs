@@ -14,4 +14,10 @@ projects:
     - src: ifera-mc/UpdateNotifier/UpdateNotifier
       version: ^2.2.0
       branch: API-4.0.0
+  KtpmplCfsTest:
+    path: "tests/KtpmplCfsTest"
+    libs:
+    - src: KygekTeam/ktpmpl-cfs/ktpmpl-cfs
+      branch: 4.0.0-dev
+      version: 4.0.0-BETA
 ...
