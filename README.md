@@ -8,6 +8,7 @@ A PocketMine-MP virion to easily implement common functionalities on KygekTeam P
 
 - Configration file version check
 - Plugin updates check in Poggit
+- Development version check
 - Includes [UpdateNotfier](https://github.com/Ifera/UpdateNotifier) virion
 
 ## Usage & Contribution
