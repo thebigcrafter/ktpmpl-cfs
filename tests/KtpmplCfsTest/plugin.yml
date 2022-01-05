@@ -1,0 +1,27 @@
+---
+# Plugin to test the ktpmpl-cfs virion
+# Copyright (C) 2022 KygekTeam
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# he Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+name: KtpmplCfsTest
+version: 1.0.0
+description: Plugin to test the ktpmpl-cfs virion
+author: KygekTeam
+website: "https://github.com/KygekTeam/ktpmpl-cfs"
+api: 4.0.0
+main: KygekTeam\KtpmplCfsTest\Plugin
+
+commands:
+  ktpmplcfs:
+    description: Command to run ktpmpl-cfs virion tests
+    permission: ktpmplcfs
+
+permissions:
+  ktpmplcfs:
+    description: Permission to run the /ktpmplcfs command
+    default: op
+...
