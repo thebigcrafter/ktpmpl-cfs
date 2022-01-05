@@ -17,7 +17,10 @@ namespace KygekTeam\KtpmplCfsTest;
 use KygekTeam\KtpmplCfs\KtpmplCfs;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\console\ConsoleCommandSender;
+use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\TextFormat;
 
 class Plugin extends PluginBase {
 
@@ -30,6 +33,12 @@ class Plugin extends PluginBase {
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool {
         if ($command->getName() === "ktpmplcfs") {
+            // Only executable in the server console
+            if (!$sender instanceof ConsoleCommandSender) {
+                $sender->sendMessage(KnownTranslationFactory::pocketmine_command_error_permission($command->getName())->prefix(TextFormat::RED));
+                return true;
+            }
+
             $this->getLogger()->info("Starting tests...");
             $fails = 0;
 

@@ -23,6 +23,5 @@ commands:
 permissions:
   ktpmplcfs:
     description: Permission to run the /ktpmplcfs command
-    # Only executable in the server console
-    default: false
+    default: op
 ...
