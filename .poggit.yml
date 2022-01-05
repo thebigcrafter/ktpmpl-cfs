@@ -2,6 +2,8 @@
 build-by-default: true
 branches:
 - main
+- pm4
+- pm4-updatenotifier
 projects:
   ktpmpl-cfs:
     path: ""
@@ -9,5 +11,6 @@ projects:
     type: library
     libs:
     - src: ifera-mc/UpdateNotifier/UpdateNotifier
-      version: ^2.1.0
+      version: ^2.2.0
+      branch: API-4.0.0
 ...
