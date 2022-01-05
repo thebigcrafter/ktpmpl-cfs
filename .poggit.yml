@@ -2,7 +2,7 @@
 build-by-default: true
 branches:
 - main
-- pm4
+- 2.0.0
 projects:
   ktpmpl-cfs:
     path: ""
