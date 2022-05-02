@@ -41,11 +41,11 @@ class KtpmplCfs {
 	 */
 	public function checkConfig(string $version, string $key = "config-version", bool $onlyCheck = false): bool {
 		$plugin = $this->plugin;
-		if ($plugin->getConfig()->get($key) !== $version) {
+		if (version_compare($plugin->getConfig()->get($key), $version, "<>")) {
 			if (!$onlyCheck) {
-				$plugin->getLogger()->notice("Your configuration file is outdated, updating the config.yml...");
-				$plugin->getLogger()->notice("The old configuration file can be found at config_old.yml");
-				rename($plugin->getDataFolder() . "config.yml", $plugin->getDataFolder() . "config_old.yml");
+				$plugin->getLogger()->notice("Your configuration file is invalid, updating the config.yml...");
+				$plugin->getLogger()->notice("Invalid configuration file can be found at config_invalid.yml");
+				rename($plugin->getDataFolder() . "config.yml", $plugin->getDataFolder() . "config_invalid.yml");
 				$plugin->saveDefaultConfig();
 				$plugin->getConfig()->reload();
 			}
