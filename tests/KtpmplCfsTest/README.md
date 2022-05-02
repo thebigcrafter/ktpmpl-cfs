@@ -6,10 +6,10 @@ A PocketMine-MP 4 plugin to test the ktpmpl-cfs virion.
 
 ## Installation
 
-Download the latest build from [Poggit CI](https://poggit.pmmp.io/ci/KygekTeam/ktpmpl-cfs/KtpmplCfsTest), then move the PHAR plugin file to the `plugins` directory of your PocketMine-MP 4 server.
+Download the latest build from [Poggit CI](https://poggit.pmmp.io/ci/thebigcrafter/ktpmpl-cfs/KtpmplCfsTest), then move the PHAR plugin file to the `plugins` directory of your PocketMine-MP 4 server.
 
 ## Usage
 
 To start the test, first start your server. Then run the `/ktpmplcfs` command in the **console** (The command won't work in-game for security reasons). Wait until the test finishes.
 
-If the test result outputs **SUCCESS**, the virion is working properly. Otherwise, there might be a problem with the virion, your server configuration, or this plugin. Be sure to [submit a new issue](https://github.com/KygekTeam/ktpmpl-cfs/issues) on GitHub if you get this.
+If the test result outputs **SUCCESS**, the virion is working properly. Otherwise, there might be a problem with the virion, your server configuration, or this plugin. Be sure to [submit a new issue](https://github.com/thebigcrafter/ktpmpl-cfs/issues) on GitHub if you get this.

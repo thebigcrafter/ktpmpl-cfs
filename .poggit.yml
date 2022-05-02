@@ -1,4 +1,4 @@
---- # Poggit-CI manifest. Open the CI at https://poggit.pmmp.io/ci/KygekTeam/ktpmpl-cfs
+--- # Poggit-CI manifest. Open the CI at https://poggit.pmmp.io/ci/thebigcrafter/ktpmpl-cfs
 build-by-default: true
 branches:
 - main
@@ -15,7 +15,7 @@ projects:
   KtpmplCfsTest:
     path: "tests/KtpmplCfsTest"
     libs:
-    - src: KygekTeam/ktpmpl-cfs/ktpmpl-cfs
+    - src: thebigcrafter/ktpmpl-cfs/ktpmpl-cfs
       branch: main
       version: 4.0.0
 ...

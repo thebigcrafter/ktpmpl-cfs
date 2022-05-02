@@ -11,7 +11,7 @@ name: KtpmplCfsTest
 version: 1.0.0
 description: Plugin to test the ktpmpl-cfs virion
 author: KygekTeam
-website: "https://github.com/KygekTeam/ktpmpl-cfs"
+website: "https://github.com/thebigcrafter/ktpmpl-cfs"
 api: 4.0.0
 main: KygekTeam\KtpmplCfsTest\Plugin
 
