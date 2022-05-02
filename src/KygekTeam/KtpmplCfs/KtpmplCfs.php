@@ -83,7 +83,7 @@ class KtpmplCfs {
         if ($plugin->getConfig()->get($key, true)) {
             if (!$onlyCheck) {
                 $name = $plugin->getName();
-                $plugin->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/KygekTeam/$name/issues.");
+                $plugin->getLogger()->warning("This plugin is running on a development version. There might be some major bugs. If you found one, please submit an issue in https://github.com/thebigcrafter/$name/issues.");
             }
             return true;
         }
