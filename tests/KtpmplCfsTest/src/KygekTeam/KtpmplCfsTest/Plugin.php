@@ -24,16 +24,12 @@ use pocketmine\utils\TextFormat;
 
 class Plugin extends PluginBase {
 
-	private KtpmplCfs $ktpmplCfs;
-
 	protected function onEnable(): void {
 		$this->saveDefaultConfig();
-		$this->ktpmplCfs = new KtpmplCfs($this);
 	}
 
 	public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
 		if ($command->getName() === "ktpmplcfs") {
-			// Only executable in the server console
 			if (!$sender instanceof ConsoleCommandSender) {
 				$sender->sendMessage(KnownTranslationFactory::pocketmine_command_error_permission($command->getName())->prefix(TextFormat::RED));
 				return true;
@@ -42,7 +38,7 @@ class Plugin extends PluginBase {
 			$this->getLogger()->info("Starting tests...");
 			$fails = 0;
 
-			$this->getLogger()->info("Starting testCheckConfig() tests [1/3]");
+			$this->getLogger()->info("Starting testCheckConfig() tests [1/2]");
 			if ($this->testCheckConfig()) {
 				$this->getLogger()->info("Success running testCheckConfig() tests");
 			} else {
@@ -50,19 +46,11 @@ class Plugin extends PluginBase {
 				$fails++;
 			}
 
-			$this->getLogger()->info("Starting testCheckUpdates() tests [2/3]");
+			$this->getLogger()->info("Starting testCheckUpdates() tests [2/2]");
 			if ($this->testCheckUpdates()) {
 				$this->getLogger()->info("Success running testCheckUpdates() tests");
 			} else {
 				$this->getLogger()->warning("Failed running testCheckUpdates() tests");
-				$fails++;
-			}
-
-			$this->getLogger()->info("Starting testWarnDevelopmentVersion() tests [3/3]");
-			if ($this->testWarnDevelopmentVersion()) {
-				$this->getLogger()->info("Success running testWarnDevelopmentVersion() tests");
-			} else {
-				$this->getLogger()->warning("Failed running testWarnDevelopmentVersion() tests");
 				$fails++;
 			}
 
@@ -79,13 +67,16 @@ class Plugin extends PluginBase {
 	}
 
 	private function testCheckConfig(): bool {
-		$success = $this->runTest("checkConfig(): Return true [1/2]", function (): bool {
-			return $this->ktpmplCfs->checkConfig("1.0", "version", true);
+		$success = $this->runTest("checkConfig(): Matching version", function (): bool {
+			KtpmplCfs::checkConfig($this, "1.0");
+			return $this->getConfig()->get("config-version") === "1.0";
 		});
 		if (!$success) return false;
 
-		$success = $this->runTest("checkConfig(): Return false [2/2]", function (): bool {
-			return !$this->ktpmplCfs->checkConfig("10", "version", true);
+		$success = $this->runTest("checkConfig(): Restore outdated file", function (): bool {
+			$this->setConfig("config-version", "0.0");
+			KtpmplCfs::checkConfig($this, "1.0");
+			return $this->getConfig()->get("config-version") === "1.0" && is_file($this->getDataFolder() . "config_old.yml");
 		});
 		if (!$success) return false;
 
@@ -93,37 +84,11 @@ class Plugin extends PluginBase {
 	}
 
 	private function testCheckUpdates(): bool {
-		$success = $this->runTest("checkUpdates(): Return true [1/2]", function (): bool {
-			return $this->ktpmplCfs->checkUpdates("updates", true);
+		return $this->runTest("checkUpdates(): Disabled setting", function (): bool {
+			$this->setConfig("check-updates", false);
+			KtpmplCfs::checkUpdates($this);
+			return $this->getConfig()->get("check-updates") === false;
 		});
-		if (!$success) return false;
-
-		$success = $this->runTest("checkUpdates(): Return false [2/2]", function (): bool {
-			$this->setConfig("updates", false);
-			$result = !$this->ktpmplCfs->checkUpdates("updates", true);
-			$this->setConfig("updates", true);
-			return $result;
-		});
-		if (!$success) return false;
-
-		return true;
-	}
-
-	private function testWarnDevelopmentVersion(): bool {
-		$success = $this->runTest("warnDevelopmentVersion(): Return true [1/2]", function (): bool {
-			return $this->ktpmplCfs->warnDevelopmentVersion("development", true);
-		});
-		if (!$success) return false;
-
-		$success = $this->runTest("warnDevelopmentVersion(): Return false [2/2]", function (): bool {
-			$this->setConfig("development", false);
-			$result = !$this->ktpmplCfs->warnDevelopmentVersion("development", true);
-			$this->setConfig("development", true);
-			return $result;
-		});
-		if (!$success) return false;
-
-		return true;
 	}
 
 	private function runTest(string $info, callable $test): bool {
