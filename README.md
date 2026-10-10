@@ -2,24 +2,48 @@
 
 [![Discord](https://img.shields.io/discord/735439472992321587.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/CXtqUZv)
 
-A PocketMine-MP virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check). This virion alleviates the need to reuse the same codes over and over across KygekTeam plugins.
+A PocketMine-MP API 4 virion that provides common helpers for KygekTeam
+plugins, including configuration-version checks and asynchronous Poggit update
+notifications. It avoids duplicating the same integration code across plugins.
 
 ## Features
 
-- Configration file version check
-- Plugin updates check in Poggit
-- Includes [UpdateNotfier](https://github.com/Ifera/UpdateNotifier) virion
+- Configuration file version check
+- Plugin update check through Poggit
+- An update-notification task bundled with this virion
+
+## Compatibility
+
+The current `main` branch declares virion version `2.0.0`, API `4.0.0` and
+PHP `8.0` in `virion.yml`. It exposes static helpers that receive the
+consuming `Plugin` instance:
+
+```php
+use KygekTeam\KtpmplCfs\KtpmplCfs;
+
+KtpmplCfs::checkConfig($plugin, "1.0.0");
+KtpmplCfs::checkUpdates($plugin);
+```
+
+The historical `v4.0.0` tag and GitHub release use an earlier instance-based
+API and should not be treated as the current `main` contract. Consumers must
+choose a matching revision and verify the resulting plugin build.
 
 ## Usage & Contribution
 
-**This virion is intended to be used only for KygekTeam plugins**, however you can contribute by forking this repository and [submitting a pull request](https://github.com/KygekTeam/ktpmpl-cfs/pulls).
+**This virion is intended to be used only for KygekTeam plugins**, however you
+can contribute by forking this repository and [submitting a pull request](https://github.com/thebigcrafter/ktpmpl-cfs/pulls).
 
 ## Upcoming Features
 
-We're still thinking and deciding for upcoming features. Meanwhile, you can request for new features by [creating an issue](https://github.com/KygekTeam/ktpmpl-cfs/issues).
+The current source is maintained as the API 4 line. Request a compatible
+change by [creating an issue](https://github.com/thebigcrafter/ktpmpl-cfs/issues)
+with the consumer and PocketMine-MP contract involved.
 
 ## Support & Contact
 
-If you found any bugs or want to give feedbacks, feel free to [create an issue](https://github.com/KygekTeam/ktpmpl-cfs/issues) on GitHub and wait for a KygekTeam staff to respond. 
+If you find a bug or want to give feedback, [create an issue](https://github.com/thebigcrafter/ktpmpl-cfs/issues)
+on GitHub and include the virion revision and consumer context.
 
-Join our [Discord server](https://discord.gg/CXtqUZv) for latest updates, announcements and support from KygekTeam staffs and its members.
+Join the [KygekTeam Discord server](https://discord.gg/CXtqUZv) for updates,
+announcements and support.
