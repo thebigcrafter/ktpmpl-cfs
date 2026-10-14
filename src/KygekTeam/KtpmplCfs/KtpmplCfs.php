@@ -15,7 +15,7 @@ declare(strict_types=1);
 namespace KygekTeam\KtpmplCfs;
 
 use KygekTeam\KtpmplCfs\task\UpdateNotifyTask;
-use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
 
 class KtpmplCfs {
@@ -24,10 +24,10 @@ class KtpmplCfs {
      * Checks for configuration file version.
      * If doesn't match the provided version, will send message to Logger, rename existing configuration file and generate new configuration file.
      *
-     * @param Plugin $plugin
+     * @param PluginBase $plugin
      * @param string $version
      */
-    public static function checkConfig(Plugin $plugin, string $version) {
+    public static function checkConfig(PluginBase $plugin, string $version) : void {
         if ($plugin->getConfig()->get("config-version") !== $version) {
             $plugin->getLogger()->notice("Your configuration file is outdated, updating the config.yml...");
             $plugin->getLogger()->notice("The old configuration file can be found at config_old.yml");
@@ -41,9 +41,9 @@ class KtpmplCfs {
      * Checks for plugin updates in Poggit.
      * Plugin must include the UpdateNotifier virion.
      *
-     * @param Plugin $plugin
+     * @param PluginBase $plugin
      */
-    public static function checkUpdates(Plugin $plugin) {
+    public static function checkUpdates(PluginBase $plugin) : void {
         if ($plugin->getConfig()->get("check-updates", true)) {
             Server::getInstance()->getAsyncPool()->submitTask(new UpdateNotifyTask(
                 $plugin->getDescription()->getName(),

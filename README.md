@@ -14,7 +14,7 @@ notifications. It avoids duplicating the same integration code across plugins.
 
 ## Compatibility
 
-The current `main` branch declares virion version `2.0.1`, API `4.0.0` and
+The current `main` branch declares virion version `2.0.2`, API `4.0.0` and
 API `5.0.0` compatibility, and PHP `8.0` in `virion.yml`. It exposes static helpers that receive the
 consuming `Plugin` instance:
 

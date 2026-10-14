@@ -47,7 +47,11 @@ class UpdateNotifyTask extends AsyncTask {
                 return;
             }
             foreach ($releases as $release) {
-                if (!is_array($release) || !isset($release["version"], $release["artifact_url"], $release["api"]) || !is_string($release["version"]) || !is_string($release["artifact_url"]) || !is_array($release["api"]) || !isset($release["api"][0]["from"], $release["api"][0]["to"])) {
+                if (!is_array($release) || !isset($release["version"], $release["artifact_url"], $release["api"]) || !is_string($release["version"]) || !is_string($release["artifact_url"]) || !is_array($release["api"])) {
+                    continue;
+                }
+                $apiRange = $release["api"][0] ?? null;
+                if (!is_array($apiRange) || !isset($apiRange["from"], $apiRange["to"]) || !is_string($apiRange["from"]) || !is_string($apiRange["to"])) {
                     continue;
                 }
                 if (version_compare($highestVersion, $release["version"], ">=")) {
@@ -55,7 +59,7 @@ class UpdateNotifyTask extends AsyncTask {
                 }
                 $highestVersion = $release["version"];
                 $artifactUrl = $release["artifact_url"];
-                $api = $release["api"][0]["from"] . " - " . $release["api"][0]["to"];
+                $api = $apiRange["from"] . " - " . $apiRange["to"];
             }
         }
 
@@ -69,7 +73,12 @@ class UpdateNotifyTask extends AsyncTask {
             return;
         }
 
-        [$highestVersion, $artifactUrl, $api, $err] = $this->getResult();
+        $result = $this->getResult();
+        if (!is_array($result) || count($result) !== 4 || !is_string($result[0]) || !is_string($result[1]) || !is_string($result[2]) || !is_string($result[3]) && $result[3] !== null) {
+            $plugin->getLogger()->error("Update notify returned an invalid result.");
+            return;
+        }
+        [$highestVersion, $artifactUrl, $api, $err] = $result;
 
         if ($err !== null) {
             $plugin->getLogger()->error("Update notify error: " . $err);
