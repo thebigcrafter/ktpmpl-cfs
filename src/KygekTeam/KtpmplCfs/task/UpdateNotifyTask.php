@@ -40,13 +40,16 @@ class UpdateNotifyTask extends AsyncTask {
         $highestVersion = $this->pluginVersion;
         $artifactUrl = "";
         $api = "";
-        if ($result !== null) {
+        if ($result !== null && $result->getCode() >= 200 && $result->getCode() < 300) {
             $releases = json_decode($result->getBody(), true);
-            if ($releases === null || !is_array($releases) || !$releases) {
+            if (!is_array($releases) || !$releases) {
                 $this->setResult([null, null, null, $err ?? "Unable to resolve host: " . self::POGGIT_RELEASES_URL . $this->pluginName]);
                 return;
             }
             foreach ($releases as $release) {
+                if (!is_array($release) || !isset($release["version"], $release["artifact_url"], $release["api"]) || !is_string($release["version"]) || !is_string($release["artifact_url"]) || !is_array($release["api"]) || !isset($release["api"][0]["from"], $release["api"][0]["to"])) {
+                    continue;
+                }
                 if (version_compare($highestVersion, $release["version"], ">=")) {
                     continue;
                 }
