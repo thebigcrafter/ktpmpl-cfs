@@ -1,5 +1,5 @@
 ---
-# Virion to easily implement common functionalities on KygekTeam PocketMine-MP plugins (e.g. config version check)
+# Virion to easily implement common functionalities on KygekTeam PocketMine-MP 5 plugins (e.g. config version check)
 # Copyright (C) 2021 KygekTeam
 #
 # This program is free software: you can redistribute it and/or modify
@@ -8,9 +8,9 @@
 # (at your option) any later version.
 
 name: ktpmpl-cfs
-version: 2.0.2
+version: 3.0.0
 author: KygekTeam
-api: [4.0.0, 5.0.0]
+api: [5.0.0]
 php: ["8.0"]
 antigen: KygekTeam\KtpmplCfs
 ...
